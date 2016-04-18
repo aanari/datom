@@ -294,7 +294,7 @@ p { margin: 10px 0; }
 }
 
 #hero.dark .background {
-	background: url(../images/background-dark.jpg) no-repeat top center;
+	background: url(../images/background.jpg) no-repeat top center;
 	background-size: cover;
 }
 
