@@ -118,11 +118,13 @@ function checkmail(input){
 		        msg.className = 'error';
 		        return false;}
 		   else 
-		  {
-	$.ajax({
-		type: "POST",
-		url: "php/submit.php",
-		data: $("#contact_form").serialize(),
+      {
+
+  $.ajax({
+    url: "https://formspree.io/ali@datomsolutions.com",
+    method: "POST",
+    data: $("#contact_form").serialize(),
+    dataType: "json",
 		success: function(msg){
 		//alert(msg);
 		if(msg){
