@@ -1,208 +1,140 @@
-/* =Main INIT Function
--------------------------------------------------------------- */
-function initializeSite() {
-    "use strict";
-
-    // Init effect 
-    $('#scene').parallax();
-
-    // Center and outline
-    (function() {
-        function centerInit(){
-            var hero            = $('#hero'),
-                sphere          = $('.sphere'),
-                sphereMargin    = ($(window).height() - sphere.height()) / 2,
-                heroContent     = $('.hero-content'),
-                contentMargin   = ($(window).height() - heroContent.height()) / 2;
-
-            hero.css ({
-                height : $(window).height() + "px"
-            });
-
-            sphere.css({
-                "margin-top" : sphereMargin + "px"
-            });
-
-            heroContent.css({
-                "margin-top" : contentMargin + "px"
-            });
-        }
-
-        $(document).ready(centerInit);
-        $(window).resize(centerInit);
-    })();
-
-    // Local scroll
-    $('#hero').localScroll({
-        duration:1000
-    });
-
-    // Light box init
-    $('.lightbox').magnificPopup({
-        type: 'image',
-         mainClass: 'mfp-with-zoom mfp-fade',
-
-        zoom: {
-            enabled: true,
-
-            duration: 300,
-            easing: 'ease-in-out',
-
-            opener: function(openerElement) {
-                return openerElement.is('img') ? openerElement : openerElement.find('img');
-            }
-        }
-    });
-
-    // Contact Form
-    $(function() {
-        $('#contact').validate({
-
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true
-                }
-            },
-
-            messages: {
-                name: {
-                    required: "come on, you have a name don't you?",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                email: {
-                    required: "no email, no message"
-                },
-                message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
-                }
-            },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact.php",
-                    success: function() {
-                        $('#contact :input').attr('disabled', 'disabled');
-                        $('#contact').fadeTo( "slow", 0.15, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn();
-                        });
-                    },
-                    error: function() {
-                        $('#contact').fadeTo( "slow", 0.15, function() {
-                            $('#error').fadeIn();
-                        });
-                    }
-                });
-            }
-        });
-    });
-
-    // MailChimp Integration
-    ajaxMailChimpForm($("#subscribe-form"), $("#subscribe-result"));
-    // Turn the given MailChimp form into an ajax version of it.
-    // If resultElement is given, the subscribe result is set as html to
-    // that element.
-    function ajaxMailChimpForm($form, $resultElement){
-            // Hijack the submission. We'll submit the form manually.
-            $form.submit(function(e) {
-                e.preventDefault();
-                if (!isValidEmail($form)) {
-                    var error =  "A valid email address must be provided.";
-                    $resultElement.hide();
-                    $resultElement.html(error);
-                    $resultElement.fadeIn();
-                    $resultElement.removeClass('notification-success');
-                    $resultElement.addClass('notification-error');
-                } else {
-                    submitSubscribeForm($form, $resultElement);
-                }
-            });
-        }
-        // Validate the email address in the form
-        function isValidEmail($form) {
-            // If email is empty, show error message.
-            // contains just one @
-            var email = $form.find("input[type='email']").val();
-            if (!email || !email.length) {
-                return false;
-            } else if (email.indexOf("@") == -1) {
-                return false;
-            }
-            return true;
-        }
-        // Submit the form with an ajax/jsonp request.
-        // Based on http://stackoverflow.com/a/15120409/215821
-        function submitSubscribeForm($form, $resultElement) {
-            $.ajax({
-                type: "GET",
-                url: $form.attr("action"),
-                data: $form.serialize(),
-                cache: false,
-                dataType: "jsonp",
-                jsonp: "c", // trigger MailChimp to return a JSONP response
-                contentType: "application/json; charset=utf-8",
-                error: function(error){
-                    // According to jquery docs, this is never called for cross-domain JSONP requests
-                },
-                success: function(data){
-                    if (data.result != "success") {
-                        var message = data.msg || "Sorry. Unable to subscribe. Please try again later.";
-                        if (data.msg && data.msg.indexOf("already subscribed") >= 0) {
-                            message = "You're already subscribed. Thank you.";
-                        }
-                        $resultElement.hide();
-                        $resultElement.html(message);
-                        $resultElement.fadeIn();
-                        $resultElement.removeClass('notification-error');
-                        $resultElement.addClass('notification-success');
-                    } else {
-                        $resultElement.hide();
-                        $resultElement.html("Thank you! You must confirm the subscription in your inbox.");
-                        $resultElement.fadeIn();
-                        $resultElement.removeClass('notification-error');
-                        $resultElement.addClass('notification-success');
-                    }
-                }
-            });
-    }
-
-};
-/* END ------------------------------------------------------- */
-
-
-/* =Document Ready Trigger
--------------------------------------------------------------- */
-$(window).load(function(){
-
-    initializeSite();
-
+jQuery( document ).ready(function( $ ) {
+"use strict"
+/*-----------------------------------------------------------------------------------*/
+/*		STICKY NAVIGATION
+/*-----------------------------------------------------------------------------------*/
+$(".sticky").sticky({topSpacing:0});
+/*-----------------------------------------------------------------------------------*/
+/* 	LOADER
+/*-----------------------------------------------------------------------------------*/
+$("#loader").delay(500).fadeOut("slow");
+/*-----------------------------------------------------------------------------------
+    TESTNMONIALS STYLE 1
+/*-----------------------------------------------------------------------------------*/
+$('#carousel').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 122,
+    itemMargin: 5,
+    asNavFor: '#slider'
 });
-/* END ------------------------------------------------------- */
-
-
-/* =Window Load Trigger
--------------------------------------------------------------- */
-$(window).load(function(){
-
-    //SKROLLR 
-    if (Modernizr.touch) {
-        skrollr.init().destroy();
-    } else {   
-        skrollr.init({
-            forceHeight: false
-        });  
-    }
-
+$('#slider').flexslider({
+    animation: "fade",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    sync: "#carousel"
+  });
+  
+  
+$('.testi-slides-flex').flexslider({
+   animation: "slide"
 });
-/* END ------------------------------------------------------- */
+
+/*-----------------------------------------------------------------------------------*/
+/* 	SLIDER REVOLUTION
+/*-----------------------------------------------------------------------------------*/
+jQuery('.tp-banner-fix').show().revolution({
+	dottedOverlay:"none",
+	delay:10000,
+	startwidth:1170,
+	startheight:670,
+	navigationType:"bullet",
+	navigationArrows:"solo",
+	navigationStyle:"preview4",
+	parallax:"mouse",
+	parallaxBgFreeze:"on",
+	parallaxLevels:[7,4,3,2,5,4,3,2,1,0],												
+	keyboardNavigation:"on",						
+	fullWidth:"off",
+	fullScreen:"off"
+});
+/*-----------------------------------------------------------------------------------*/
+/*	ISOTOPE PORTFOLIO
+/*-----------------------------------------------------------------------------------*/
+var $container = $('.port-wrap .items');
+    $container.imagesLoaded(function () {
+    $container.isotope({
+    itemSelector: '.portfolio-item',
+    layoutMode: 'masonry'
+});	
+});
+$('.portfolio-filter li a').on('click', function () {
+    $('.portfolio-filter li a').removeClass('active');
+    $(this).addClass('active');
+    var selector = $(this).attr('data-filter');
+    $container.isotope({
+      filter: selector
+    });
+return false;
+});
+/*-----------------------------------------------------------------------------------*/
+/* 	SINGLE SLIDE
+/*-----------------------------------------------------------------------------------*/
+$(".single-slides").owlCarousel({ 
+    items : 1,
+	autoplay:false,
+	autoplayHoverPause:true,
+	singleItem	: true,
+	navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	lazyLoad:true,
+	nav: true,
+	loop: true,
+	animateOut: 'fadeOut'	
+});
+});
+
+/*-----------------------------------------------------------------------------------*/
+/*    CONTACT FORM
+/*-----------------------------------------------------------------------------------*/
+function checkmail(input){
+  var pattern1=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  	if(pattern1.test(input)){ return true; }else{ return false; }}     
+    function proceed(){
+    	var name = document.getElementById("name");
+		var email = document.getElementById("email");
+		var company = document.getElementById("company");
+		var web = document.getElementById("website");
+		var msg = document.getElementById("message");
+		var errors = "";
+		if(name.value == ""){ 
+		name.className = 'error';
+	  	  return false;}    
+		  else if(email.value == ""){
+		  email.className = 'error';
+		  return false;}
+		    else if(checkmail(email.value)==false){
+		        alert('Please provide a valid email address.');
+		        return false;}
+		    else if(company.value == ""){
+		        company.className = 'error';
+		        return false;}
+		   else if(web.value == ""){
+		        web.className = 'error';
+		        return false;}
+		   else if(msg.value == ""){
+		        msg.className = 'error';
+		        return false;}
+		   else 
+		  {
+	$.ajax({
+		type: "POST",
+		url: "php/submit.php",
+		data: $("#contact_form").serialize(),
+		success: function(msg){
+		//alert(msg);
+		if(msg){
+			$('#contact_form').fadeOut(1000);
+			$('#contact_message').fadeIn(1000);
+				document.getElementById("contact_message");
+			 return true;
+		}}
+	});
+}};
+
+
+
+
+
