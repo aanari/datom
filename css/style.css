@@ -162,7 +162,8 @@ a {
 	color: #fff !important;
 }
 .fa-heart.white-text {
-    text-shadow: 0px 1px 0px #f2babb !important;
+    color: #f5cccc !important;
+    text-shadow: 0px 3px 0px #e77e80 !important;
 }
 .font-italic {
 	font-style: italic;
@@ -1535,10 +1536,10 @@ footer .news-letter button{
 	border-bottom:1px dashed #fff;
 }
 .footer-info .quote .form-control{
-    color: #aaa !important;
+    color: #eee !important;
 	background:none;
 	border-radius:0px;
-	border:1px solid #3f4753;
+	border:1px solid #6e7c91;
 	margin-bottom:20px;
 	height:40px;
 	font-size:13px;
