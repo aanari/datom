@@ -714,11 +714,6 @@ header.coporate-header .ownmenu > li > .megamenu {
 /*=======================================================
       CASE STUDIES
 ========================================================*/
-.case-studies{
-}
-.case{
-	
-}
 .case ul li article{
 	position:relative;
 	overflow:hidden;
@@ -737,8 +732,12 @@ header.coporate-header .ownmenu > li > .megamenu {
 	transition: all 0.4s ease-in-out;
 	width:100%;
 }
-.case ul li article .case-detail h5{
+.case ul li article .case-detail h5 {
 	font-weight:normal;
+    color: #1aaf5d;
+}
+.case ul li article .case-detail h6 {
+	text-transform: uppercase;
 }
 .case ul li article:hover img{
 	opacity:0.7;
