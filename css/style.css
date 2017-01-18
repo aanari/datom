@@ -1530,6 +1530,7 @@ footer .news-letter button{
 	border-bottom:1px dashed #fff;
 }
 .footer-info .quote .form-control{
+    color: #aaa !important;
 	background:none;
 	border-radius:0px;
 	border:1px solid #3f4753;
