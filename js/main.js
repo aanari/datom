@@ -30,7 +30,7 @@ $('#slider').flexslider({
   
   
 $('.testi-slides-flex').flexslider({
-   animation: "slide"
+  animation: "slide"
 });
 
 /*-----------------------------------------------------------------------------------*/

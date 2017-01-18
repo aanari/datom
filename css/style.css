@@ -282,6 +282,9 @@ section {
 	background:#fff;
 	color:#232c3b;
 }
+.btn-white:hover {
+    background: #7a7a7a;
+}
 
 /*=======================================================
       TOP BAR
@@ -986,8 +989,8 @@ header.coporate-header .ownmenu > li > .megamenu {
 	left:0px;
 }
 .testi-slides-flex .flex-control-nav li a{
-	height:7px;
-	width:7px;
+	height:12px;
+	width:12px;
 	background:rgba(255,255,255,1);
 }
 .testi-slides-flex .flex-control-nav li{
