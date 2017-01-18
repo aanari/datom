@@ -52,25 +52,6 @@ jQuery('.tp-banner-fix').show().revolution({
 	fullScreen:"off"
 });
 /*-----------------------------------------------------------------------------------*/
-/*	ISOTOPE PORTFOLIO
-/*-----------------------------------------------------------------------------------*/
-var $container = $('.port-wrap .items');
-    $container.imagesLoaded(function () {
-    $container.isotope({
-    itemSelector: '.portfolio-item',
-    layoutMode: 'masonry'
-});	
-});
-$('.portfolio-filter li a').on('click', function () {
-    $('.portfolio-filter li a').removeClass('active');
-    $(this).addClass('active');
-    var selector = $(this).attr('data-filter');
-    $container.isotope({
-      filter: selector
-    });
-return false;
-});
-/*-----------------------------------------------------------------------------------*/
 /* 	SINGLE SLIDE
 /*-----------------------------------------------------------------------------------*/
 $(".single-slides").owlCarousel({ 
@@ -126,7 +107,6 @@ function checkmail(input){
     data: $("#contact_form").serialize(),
     dataType: "json",
 		success: function(msg){
-		//alert(msg);
 		if(msg){
 			$('#contact_form').fadeOut(1000);
 			$('#contact_message').fadeIn(1000);
@@ -135,8 +115,3 @@ function checkmail(input){
 		}}
 	});
 }};
-
-
-
-
-
