@@ -234,6 +234,12 @@ footer .news-letter .social_icons {
 .front-page .btn {
 	padding: 15px 20px;
 }
+.home-slider {
+    display: none;
+}
+.top-bar .some-info li {
+    line-height: 24px !important;
+}
 }
 @media(max-width:440px) {
 .front-page .btn {
