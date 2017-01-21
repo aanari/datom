@@ -1,5 +1,15 @@
 jQuery( document ).ready(function( $ ) {
 "use strict"
+
+  $('.page-scroll').on('click', function (event) {
+    var $anchor = $(this);
+    $('html, body').stop().animate({
+      scrollTop: $($anchor.attr('href')).offset().top
+    }, 800, 'easeInOutExpo');
+    event.preventDefault();
+  });
+
+
 /*-----------------------------------------------------------------------------------*/
 /*		STICKY NAVIGATION
 /*-----------------------------------------------------------------------------------*/
