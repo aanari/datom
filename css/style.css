@@ -1,29 +1,3 @@
-/*------------------------------------------------------------------
-    Main Style Stylesheet
-    Project:        ZAP | The Multi-Purpose HTML5 Template
-    Version:        1.0
-    Author:         M_Adnan
-    Last change:    10/02/2015
-    Primary use:    Creative, Coporate, Business, Portfolio, Personal
--------------------------------------------------------------------*/
-
-/*------------------------------------------------------------------
-body 
- + WRAP
- + HEADER
- + NAVIGATION
- + BANNER
- + SERVICES
- + OUR FEATURED FOUNDERS
- + BLOG UPDATES 
- + APPOINMENT
- + NEWS FROM BLOG
- + PARTNERS / CLIENTS
- + FOOTER
- + SOCIAL ICONS
- + MEGA MENU
- + 3 MENU LEVEL 
--------------------------------------------------------------------*/
 /*=======================================================
       IMPORT FILE
 ========================================================*/
@@ -921,7 +895,7 @@ header.coporate-header .ownmenu > li > .megamenu {
 .testimonial .slides p{
 	font-size:14px;
 	font-style:italic;
-	line-height:33px;
+	line-height:24px;
 }
 .testimonial img{
 	width:auto !important;
@@ -965,9 +939,13 @@ header.coporate-header .ownmenu > li > .megamenu {
 }
 
 .testi-slides-flex{
-	width:75%;
+	width:100%;
 	margin:0 auto;
 	text-align:center;
+}
+.testi-slides-flex li {
+  margin-bottom: 20px;
+  padding: 20px;
 }
 .testi-slides-flex h5{
     margin: 20px 0 0 0;
@@ -1093,7 +1071,7 @@ header.coporate-header .ownmenu > li > .megamenu {
 			CONTACT
 ========================================================*/
 .contact-us #map{
-	height:700px;
+	height:620px;
 	width:100%;
 }
 .contact .error {
@@ -1174,7 +1152,7 @@ header.coporate-header .ownmenu > li > .megamenu {
 	display: inline-block;
 	width: 100%;
 	position: relative;
-	padding: 10px 20px;
+	padding: 10px;
 }
 .contact-form {
 }
@@ -1505,7 +1483,6 @@ footer .news-letter button{
 	font-size:20px;
 }
 .footer-info{
-	margin-top:50px;
 	border-top:1px solid rgba(255,255,255,0.2);
 	padding-top:50px;
 }
@@ -1598,8 +1575,3 @@ footer .news-letter button{
 .social_icons li a:hover{
 	background:#1aaf5d;
 }
-
-
-
-
-
