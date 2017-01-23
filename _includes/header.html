@@ -28,15 +28,14 @@
   <div class="sticky">
     <div class="container">
       <div class="logo"> <a href="/"><img src="images/logo.png" alt=""></a> </div>
-
       <!-- Nav -->
       <nav>
         <ul id="ownmenu" class="ownmenu">
-          <li><a href="/">HOME</a></li>
-          <li><a href="/services"> SERVICES </a></li>
-          <li><a href="/case-studies"> CASE STUDIES </a></li>
-          <li><a href="/testimonials"> TESTIMONIALS </a></li>
-          <li><a href="/contact"> CONTACT</a></li>
+          <li {% if page.url == "/" %}class="active"{% endif %}><a href="/" >HOME</a></li>
+          <li {% if page.url == "/services.html" %}class="active"{% endif %}><a href="/services"> SERVICES </a></li>
+          <li {% if page.url == "/case-studies.html" %}class="active"{% endif %}><a href="/case-studies"> CASE STUDIES </a></li>
+          <li {% if page.url == "/testimonials.html" %}class="active"{% endif %}><a href="/testimonials"> TESTIMONIALS </a></li>
+          <li {% if page.url == "/contact.html" %}class="active"{% endif %}><a href="/contact"> CONTACT</a></li>
         </ul>
       </nav>
     </div>
